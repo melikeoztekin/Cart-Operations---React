@@ -1,0 +1,29 @@
+@media screen and (max-width:992px) {
+    .head-icon {
+        justify-content: flex-end;
+        flex-grow: 2;
+    }
+}
+
+.navbar-brand {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.basketButton,
+.loginButton {
+    font-size: 1.4rem;
+}
+
+.basket {
+    display: none;
+}
+
+
+.basketButton:hover .basket {
+    display: block;
+    position: absolute;
+    right: 3rem;
+    top: 4.5rem;
+}
