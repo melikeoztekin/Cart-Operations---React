@@ -5,6 +5,9 @@ import { Header } from './components/header';
 import { Content } from './components/content';
 import { Footer } from './components/footer';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const products = [
   {
     id: 1,
@@ -59,11 +62,9 @@ const App = () => {
           totalPrice: parseFloat(newProduct.productPrice),
         }]
       )
-
       basketList.forEach(item => {
         totalBasketPrice = totalBasketPrice + item.totalPrice
       })
-
       setBasketTotalPrice(totalBasketPrice + parseFloat(newProduct.productPrice))
     } else {
       var newBasketList = []
@@ -79,7 +80,6 @@ const App = () => {
           newBasketList.push(basket)
         }
       })
-
       setBasketList(
         newBasketList
       )
@@ -89,7 +89,9 @@ const App = () => {
       })
       setBasketTotalPrice(totalBasketPrice)
     }
+    toast.success(`Added to cart.`)
   }
+
 
   const productDelete = (id) => {
     var deleteBasketList = []
@@ -104,11 +106,14 @@ const App = () => {
       totalBasketPrice = totalBasketPrice + item.totalPrice
     })
     setBasketTotalPrice(totalBasketPrice)
+    toast.error(`Removed from cart.`)
   }
+
 
   const basketAllDelete = () => {
     setBasketList([])
     setBasketTotalPrice(0)
+    toast.warning(`All products removed.`)
   }
 
 
@@ -116,6 +121,7 @@ const App = () => {
 
   return (
     <div>
+      <ToastContainer position='bottom-right' />
       <BrowserRouter>
         <Header basketList={basketList} productDelete={productDelete} basketAllDelete={basketAllDelete} basketTotalPrice={basketTotalPrice} />
         <Content addCartProduct={addCartProduct} products={products} />

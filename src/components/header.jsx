@@ -39,7 +39,7 @@ const Header = (props) => {
               <i className="fa fa-basket-shopping"></i>
               <div className="basket">
                 <Cart
-                  sepetListesi={props.basketList}
+                  basketList={props.basketList}
                   productDelete={props.productDelete}
                   basketAllDelete={props.basketAllDelete}
                   basketTotalPrice={props.basketTotalPrice}
@@ -82,7 +82,7 @@ const Header = (props) => {
                 <i className="fa fa-basket-shopping"></i>&nbsp; Cart
                 <div className="basket">
                   <Cart
-                    sepetListesi={props.basketList}
+                    basketList={props.basketList}
                     productDelete={props.productDelete}
                     basketAllDelete={props.basketAllDelete}
                     basketTotalPrice={props.basketTotalPrice}
