@@ -1,9 +1,12 @@
 import React from "react";
+import "../App.css";
 
 const Footer = () => {
   return (
-    <div className="pb-2 pt-2 bg-dark text-muted text-center">
-      <text>melikeoztekin06@gmail.com</text>
+    <div className="pb-5 pt-5 bg-dark text-muted text-center">
+      <a className="text-muted" href="mailto:melikeoztekin06@gmail.com">
+        melikeoztekin06@gmail.com
+      </a>
     </div>
   );
 };

@@ -60,7 +60,7 @@ const Cart = (props) => {
         <button className="btn btn-danger" onClick={props.basketAllDelete}>
           <i className="fas fa-trash"></i> Remove All
         </button>
-        <div>Total Price : {props.sepetToplam}</div>
+        <div>Total Price : {props.basketTotalPrice}</div>
       </div>
     </div>
   );

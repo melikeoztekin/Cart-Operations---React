@@ -39,10 +39,10 @@ const Header = (props) => {
               <i className="fa fa-basket-shopping"></i>
               <div className="basket">
                 <Cart
-                  sepetListesi={props.sepetListesi}
+                  sepetListesi={props.basketList}
                   productDelete={props.productDelete}
                   basketAllDelete={props.basketAllDelete}
-                  sepetToplam={props.sepetToplam}
+                  basketTotalPrice={props.basketTotalPrice}
                 />
               </div>
             </button>
@@ -79,13 +79,13 @@ const Header = (props) => {
 
             <div className="d-flex d-none d-lg-block d-xl-block">
               <button className="basketButton btn btn-dark text-warning">
-                <i className="fa fa-basket-shopping"></i>&nbsp; Sepet
+                <i className="fa fa-basket-shopping"></i>&nbsp; Cart
                 <div className="basket">
                   <Cart
-                    sepetListesi={props.sepetListesi}
+                    sepetListesi={props.basketList}
                     productDelete={props.productDelete}
                     basketAllDelete={props.basketAllDelete}
-                    sepetToplam={props.sepetToplam}
+                    basketTotalPrice={props.basketTotalPrice}
                   />
                 </div>
               </button>
@@ -93,7 +93,7 @@ const Header = (props) => {
                 className="loginButton btn btn-dark text-info"
                 to="/pages/login"
               >
-                <i className="fa fa-user"></i>&nbsp; Giriş yap
+                <i className="fa fa-user"></i>&nbsp; Login
               </NavLink>
             </div>
           </div>

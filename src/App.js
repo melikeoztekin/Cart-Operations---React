@@ -8,70 +8,71 @@ import { Footer } from './components/footer';
 const products = [
   {
     id: 1,
-    productHeader: "ürün 1",
+    productHeader: "Product name 1",
     productImage: "../images/product-1-1.jpg",
-    productPrice: "100 TL",
+    productPrice: "100 $",
   },
   {
     id: 2,
-    productHeader: "ürün 2",
+    productHeader: "Product name 2",
     productImage: "../images/product-2-1.jpg",
-    productPrice: "150 TL",
+    productPrice: "150 $",
   },
   {
     id: 3,
-    productHeader: "ürün 3",
+    productHeader: "Product name 3",
     productImage: "../images/product-3-1.jpg",
-    productPrice: "200 TL",
+    productPrice: "200 $",
   },
   {
     id: 4,
-    productHeader: "ürün 4",
+    productHeader: "Product name 4",
     productImage: "../images/product-4-1.jpg",
-    productPrice: "250 TL",
+    productPrice: "250 $",
   },
   {
     id: 5,
-    productHeader: "ürün 5",
+    productHeader: "Product name 5",
     productImage: "../images/product-5-1.jpg",
-    productPrice: "300 TL",
+    productPrice: "300 $",
   },
   {
     id: 6,
-    productHeader: "ürün 6",
+    productHeader: "Product name 6",
     productImage: "../images/product-1-1.jpg",
-    productPrice: "300 TL",
+    productPrice: "300 $",
   },
 ];
 
 const App = () => {
   //GET           SET                    İLK DEĞER
-  const [sepetListesi, setSepetListesi] = useState([]);
-  const [sepetToplam, setSepetToplam] = useState(0);
-  const sepetUrunEkle = (newProduct) => {
-    var varMi = sepetListesi.filter(basket => basket.product.id === newProduct.id);
-    var total = 0;
-    if (varMi.length === 0) {
-      setSepetListesi(
-        [...sepetListesi, {
+  const [basketList, setBasketList] = useState([]);
+  const [basketTotalPrice, setBasketTotalPrice] = useState(0);
+  const addCartProduct = (newProduct) => {
+    var productFilter = basketList.filter(basket => basket.product.id === newProduct.id);
+    var totalBasketPrice = 0;
+    if (productFilter.length === 0) {
+      setBasketList(
+        [...basketList, {
           product: newProduct,
           productCount: 1,
           totalPrice: parseFloat(newProduct.productPrice),
         }]
       )
 
-      sepetListesi.forEach(item => {
-        total = total + item.totalPrice
+      basketList.forEach(item => {
+        totalBasketPrice = totalBasketPrice + item.totalPrice
       })
-      setSepetToplam(total + parseFloat(newProduct.productPrice))
+
+      setBasketTotalPrice(totalBasketPrice + parseFloat(newProduct.productPrice))
     } else {
       var newBasketList = []
-      sepetListesi.forEach(basket => {
+      basketList.forEach(basket => {
         if (basket.product.id === newProduct.id) {
           newBasketList.push({
-            product: varMi[0].product,
-            productCount: varMi[0].productCount + 1,
-            totalPrice: (varMi[0].productCount + 1) * parseFloat(newProduct.productPrice),
+            product: productFilter[0].product,
+            productCount: productFilter[0].productCount + 1,
+            totalPrice: (productFilter[0].productCount + 1) * parseFloat(newProduct.productPrice),
           })
         }
         else {
@@ -79,35 +80,35 @@ const App = () => {
         }
       })
 
-      setSepetListesi(
+      setBasketList(
         newBasketList
       )
-      total = 0;
+      totalBasketPrice = 0;
       newBasketList.forEach(item => {
-        total = total + item.totalPrice
+        totalBasketPrice = totalBasketPrice + item.totalPrice
       })
-      setSepetToplam(total)
+      setBasketTotalPrice(totalBasketPrice)
     }
   }
 
   const productDelete = (id) => {
     var deleteBasketList = []
-    sepetListesi.forEach(basket => {
+    basketList.forEach(basket => {
       if (basket.product.id !== id) {
         deleteBasketList.push(basket)
       }
     })
-    setSepetListesi(deleteBasketList);
-    var total = 0;
+    setBasketList(deleteBasketList);
+    var totalBasketPrice = 0;
     deleteBasketList.forEach(item => {
-      total = total + item.totalPrice
+      totalBasketPrice = totalBasketPrice + item.totalPrice
     })
-    setSepetToplam(total)
+    setBasketTotalPrice(totalBasketPrice)
   }
 
   const basketAllDelete = () => {
-    setSepetListesi([])
-    setSepetToplam(0)
+    setBasketList([])
+    setBasketTotalPrice(0)
   }
 
 
@@ -116,8 +117,8 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <Header sepetListesi={sepetListesi} productDelete={productDelete} basketAllDelete={basketAllDelete} sepetToplam={sepetToplam} />
-        <Content sepetUrunEkle={sepetUrunEkle} products={products} />
+        <Header basketList={basketList} productDelete={productDelete} basketAllDelete={basketAllDelete} basketTotalPrice={basketTotalPrice} />
+        <Content addCartProduct={addCartProduct} products={products} />
         <Footer />
       </BrowserRouter>
     </div>

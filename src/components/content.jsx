@@ -14,7 +14,7 @@ const Content = (props) => {
           path="/pages/products"
           element={
             <Products
-              sepetUrunEkle={props.sepetUrunEkle}
+              addCartProduct={props.addCartProduct}
               products={props.products}
             />
           }

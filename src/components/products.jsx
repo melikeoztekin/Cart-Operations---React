@@ -11,11 +11,11 @@ const Card = (props) => {
         {
           <button
             onClick={() => {
-              props.addCart(props.product);
+              props.addCartProduct(props.product);
             }}
             className="card-button"
           >
-            Sepete Ekle
+            Add to cart
           </button>
         }
       </div>
@@ -30,7 +30,11 @@ const Product = (props) => {
       <div className="row product-container">
         {props.products.map((item) => {
           return (
-            <Card addCart={props.sepetUrunEkle} product={item} key={item.id} />
+            <Card
+              addCartProduct={props.addCartProduct}
+              product={item}
+              key={item.id}
+            />
           );
         })}
       </div>
