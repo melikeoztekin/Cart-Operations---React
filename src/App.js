@@ -47,7 +47,7 @@ const products = [
   },
 ];
 
-const App = () => {
+const App = (props) => {
   //GET           SET                    İLK DEĞER
   const [basketList, setBasketList] = useState([]);
   const [basketTotalPrice, setBasketTotalPrice] = useState(0);
@@ -89,12 +89,13 @@ const App = () => {
       })
       setBasketTotalPrice(totalBasketPrice)
     }
-    toast.success(`Added to cart.`)
+    toast.success(`${newProduct.productHeader} Added to cart.`)
   }
 
 
   const productDelete = (id) => {
     var deleteBasketList = []
+    var removeProduct = basketList.filter(x => x.product.id === id)[0]
     basketList.forEach(basket => {
       if (basket.product.id !== id) {
         deleteBasketList.push(basket)
@@ -106,7 +107,7 @@ const App = () => {
       totalBasketPrice = totalBasketPrice + item.totalPrice
     })
     setBasketTotalPrice(totalBasketPrice)
-    toast.error(`Removed from cart.`)
+    toast.error(`${removeProduct.product.productHeader} Removed from cart.`)
   }
 
 

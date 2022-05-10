@@ -56,12 +56,16 @@ const Cart = (props) => {
           );
         })}
       </>
-      <div className="cart-footer p-2 d-flex align-items-center justify-content-between border-top">
-        <button className="btn btn-danger" onClick={props.basketAllDelete}>
-          <i className="fas fa-trash"></i> Remove All
-        </button>
-        <div>Total Price : {props.basketTotalPrice}</div>
-      </div>
+      {props.basketList.length >= 1 ? (
+        <div className="cart-footer p-2 d-flex align-items-center justify-content-between border-top">
+          <button className="btn btn-danger" onClick={props.basketAllDelete}>
+            <i className="fas fa-trash"></i> Remove All
+          </button>
+          <div>Total Price : {props.basketTotalPrice}</div>
+        </div>
+      ) : (
+        `Sepette ürün bulunmamaktadır.`
+      )}
     </div>
   );
 };
