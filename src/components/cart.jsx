@@ -19,11 +19,11 @@ const CartItem = (props) => {
           </span>
         </div>
         <div className="cart-p-count text-center">
-          <div>
+          <div onClick={() => props.productUp(props.basketItem.product.id)}>
             <i className="fa fa-plus"></i>
           </div>
           {props.basketItem.productCount}
-          <div>
+          <div onClick={() => props.productDown(props.basketItem.product.id)}>
             <i className="fa fa-minus"></i>
           </div>
         </div>
@@ -51,6 +51,8 @@ const Cart = (props) => {
             <CartItem
               basketItem={basketItem}
               productDelete={props.productDelete}
+              productUp={props.productUp}
+              productDown={props.productDown}
               key={basketItem.product.id}
             />
           );
@@ -64,7 +66,7 @@ const Cart = (props) => {
           <div>Total Price : {props.basketTotalPrice}</div>
         </div>
       ) : (
-        `Sepette ürün bulunmamaktadır.`
+        `There are no products in the cart.`
       )}
     </div>
   );

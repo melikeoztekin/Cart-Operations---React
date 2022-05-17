@@ -117,14 +117,57 @@ const App = (props) => {
     toast.warning(`All products removed.`)
   }
 
+  const productUp = (id) => {
+    var newBasketList = [];
+    basketList.forEach(basketItem => {
+      if (basketItem.product.id === id) {
+        newBasketList.push({
+          product: basketItem.product,
+          productCount: basketItem.productCount + 1,
+          totalPrice: (basketItem.productCount + 1) * parseFloat(basketItem.product.productPrice),
+        })
+      }
+      else {
+        newBasketList.push(basketItem)
+      }
+    })
+    setBasketList(newBasketList);
+    var totalBasketPrice = 0
+    newBasketList.forEach(item => {
+      totalBasketPrice = totalBasketPrice + item.totalPrice
+    })
+    setBasketTotalPrice(totalBasketPrice)
+  }
 
+
+  const productDown = (id) => {
+    var newBasketList = [];
+    basketList.forEach(basketItem => {
+      if (basketItem.product.id === id) {
+        newBasketList.push({
+          product: basketItem.product,
+          productCount: basketItem.productCount - 1,
+          totalPrice: (basketItem.productCount - 1) * parseFloat(basketItem.product.productPrice),
+        })
+      }
+      else {
+        newBasketList.push(basketItem)
+      }
+    })
+    setBasketList(newBasketList);
+    var totalBasketPrice = 0
+    newBasketList.forEach(item => {
+      totalBasketPrice = totalBasketPrice + item.totalPrice
+    })
+    setBasketTotalPrice(totalBasketPrice)
+  }
 
 
   return (
     <div>
       <ToastContainer position='bottom-right' />
       <BrowserRouter>
-        <Header basketList={basketList} productDelete={productDelete} basketAllDelete={basketAllDelete} basketTotalPrice={basketTotalPrice} />
+        <Header basketList={basketList} productDelete={productDelete} basketAllDelete={basketAllDelete} basketTotalPrice={basketTotalPrice} productUp={productUp} productDown={productDown} />
         <Content addCartProduct={addCartProduct} products={products} />
         <Footer />
       </BrowserRouter>

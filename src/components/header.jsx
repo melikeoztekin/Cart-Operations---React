@@ -43,6 +43,8 @@ const Header = (props) => {
                   productDelete={props.productDelete}
                   basketAllDelete={props.basketAllDelete}
                   basketTotalPrice={props.basketTotalPrice}
+                  productUp={props.productUp}
+                  productDown={props.productDown}
                 />
               </div>
             </button>
@@ -86,6 +88,8 @@ const Header = (props) => {
                     productDelete={props.productDelete}
                     basketAllDelete={props.basketAllDelete}
                     basketTotalPrice={props.basketTotalPrice}
+                    productUp={props.productUp}
+                    productDown={props.productDown}
                   />
                 </div>
               </button>
